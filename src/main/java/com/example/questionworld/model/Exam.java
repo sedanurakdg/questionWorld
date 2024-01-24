@@ -1,0 +1,28 @@
+package com.example.questionworld.model;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class Exam {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @ManyToMany(targetEntity = Question.class, cascade = CascadeType.DETACH)
+    @JoinTable(
+            name = "exam_question",
+            joinColumns = {@JoinColumn(name = "exam_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "question_id", nullable = false, updatable = false)})
+    private List<Question> questions;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private OpUser opUser;
+}
