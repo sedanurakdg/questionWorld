@@ -4,11 +4,11 @@ import com.example.questionworld.dto.OpUserP;
 import com.example.questionworld.model.OpUser;
 
 public interface IOperationalService {
-    OpUser createOpUser(OpUser opUserP);
+    OpUser createOpUser(OpUserP opUserP);
 
     OpUser getUserById(Integer id);
 
-    OpUser editOpUser(OpUser opUser);
+    OpUser editOpUser(Integer id,OpUserP opUser);
 
     void changePassword(Integer id, String password);
 

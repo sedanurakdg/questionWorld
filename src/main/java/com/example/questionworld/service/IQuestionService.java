@@ -1,6 +1,7 @@
 package com.example.questionworld.service;
 
 import com.example.questionworld.dto.QuestionP;
+import com.example.questionworld.model.LessonEnum;
 import com.example.questionworld.model.OpUser;
 import com.example.questionworld.model.Question;
 
@@ -10,7 +11,7 @@ public interface IQuestionService {
 
     Question createQuestion(QuestionP questionP);
 
-    List<Question> getAllQuestion(String lesson,String classroom);
+    List<Question> getAllQuestion(LessonEnum lesson, String classroom);
 
     Question editQuestion(Integer id,QuestionP questionP);
     void deleteQuestion(Integer id);

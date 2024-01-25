@@ -2,6 +2,7 @@ package com.example.questionworld.service;
 
 
 import com.example.questionworld.dto.QuestionP;
+import com.example.questionworld.model.LessonEnum;
 import com.example.questionworld.model.Question;
 import com.example.questionworld.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class QuestionService implements IQuestionService {
     }
 
     @Override
-    public List<Question> getAllQuestion(String lesson, String classroom) {
+    public List<Question> getAllQuestion(LessonEnum lesson, String classroom) {
         return questionRepository.findByLessonAndClassRoom(lesson, classroom);
     }
 

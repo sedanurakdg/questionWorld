@@ -3,8 +3,6 @@ package com.example.questionworld.service;
 import com.example.questionworld.dto.OpUserP;
 import com.example.questionworld.repository.OpUserRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import com.example.questionworld.exception.BadRequestException;
 import com.example.questionworld.model.OpUser;
 import lombok.extern.log4j.Log4j2;
@@ -19,19 +17,16 @@ public class OperationalService implements IOperationalService {
 
     private final OpUserRepository opUserRepository;
 
-    public OpUser createOpUser(OpUser opUser) {
-        isUserExistByUsername(opUser);
-
-        String hashed = BCrypt.hashpw(opUser.getPassword(), BCrypt.gensalt());
-        opUser.setPassword(hashed);
-
-        opUser = opUserRepository.save(opUser);
-        opUser.setPassword(null);
-
+    public OpUser createOpUser(OpUserP opUserP) {
+        isUserExistByUsername(opUserP);
+        OpUser opUser=new OpUser();
+        opUser.setUsername(opUserP.getUsername());
+        opUser.setPassword(opUserP.getPassword());
+        opUserRepository.save(opUser);
         return opUser;
     }
 
-    public void isUserExistByUsername(OpUser opUserP) {
+    public void isUserExistByUsername(OpUserP opUserP) {
         if (opUserRepository.existsByUsername(opUserP.getUsername())) {
             throw new BadRequestException("This user exists with username: " + opUserP.getUsername());
         }
@@ -43,10 +38,10 @@ public class OperationalService implements IOperationalService {
     }
 
     @Override
-    public OpUser editOpUser(OpUser opUserP) {
+    public OpUser editOpUser(Integer id,OpUserP opUserP) {
 
-        OpUser opUser = opUserRepository.findOpUserById(opUserP.getId());
-        opUser.setPassword(BCrypt.hashpw(opUserP.getPassword(), BCrypt.gensalt()));
+        OpUser opUser = opUserRepository.findOpUserById(id);
+        opUser.setPassword(opUser.getPassword());
         opUser.setUsername(opUserP.getUsername());
         opUserRepository.save(opUser);
         return opUser;
@@ -55,7 +50,7 @@ public class OperationalService implements IOperationalService {
     @Override
     public void changePassword(Integer id, String password) {
         OpUser opUser = opUserRepository.findById(id).orElseThrow(NotFoundException::new);
-        opUser.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+        opUser.setPassword(password);
         opUserRepository.save(opUser);
     }
 
@@ -67,7 +62,7 @@ public class OperationalService implements IOperationalService {
     @Override
     public OpUser login(OpUserP opUserP) {
         OpUser opUser = opUserRepository.findOpUserByUsername(opUserP.getUsername());
-        if (opUser.getPassword().equals(BCrypt.hashpw(opUserP.getPassword(), BCrypt.gensalt()))) {
+        if (opUser.getPassword().equals(opUserP.getPassword())) {
             return opUser;
         } else {
             return null;

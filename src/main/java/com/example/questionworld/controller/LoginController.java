@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/opusers", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @EnableAutoConfiguration
 @CrossOrigin("*")
 @Log4j2
@@ -21,7 +21,7 @@ public class LoginController {
     private final IOperationalService operationalService;
 
     @PostMapping
-    public ResponseEntity<OpUser> createOpUser(@RequestBody OpUser opUserP) {
+    public ResponseEntity<OpUser> createOpUser(@RequestBody OpUserP opUserP) {
         return ResponseEntity.ok(operationalService.createOpUser(opUserP));
     }
     @GetMapping("/{id}")
@@ -29,9 +29,9 @@ public class LoginController {
         return ResponseEntity.ok(operationalService.getUserById(id));
     }
 
-    @PutMapping
-    public ResponseEntity<OpUser> editOpUser(@RequestBody OpUser opUser) {
-        return ResponseEntity.ok(operationalService.editOpUser(opUser));
+    @PutMapping("/{id}")
+    public ResponseEntity<OpUser> editOpUser(@PathVariable("id") Integer id,@RequestBody OpUserP opUserP) {
+        return ResponseEntity.ok(operationalService.editOpUser(id,opUserP));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Integer id) {

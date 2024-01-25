@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
-    List<Question> findByLessonAndClassRoom(String lesson, String classRoom);
+    List<Question> findByLessonAndClassRoom(LessonEnum lesson, String classRoom);
 }

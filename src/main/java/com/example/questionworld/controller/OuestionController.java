@@ -3,6 +3,7 @@ package com.example.questionworld.controller;
 
 import com.example.questionworld.dto.OpUserP;
 import com.example.questionworld.dto.QuestionP;
+import com.example.questionworld.model.LessonEnum;
 import com.example.questionworld.model.OpUser;
 import com.example.questionworld.model.Question;
 import com.example.questionworld.service.IQuestionService;
@@ -31,7 +32,7 @@ public class OuestionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Question>> getQuestiosnByLessonAndClassroom(@QueryParam("lesson") String lesson,
+    public ResponseEntity<List<Question>> getQuestiosnByLessonAndClassroom(@QueryParam("lesson") LessonEnum lesson,
                                                                            @QueryParam("classroom") String classroom) {
         return ResponseEntity.ok(questionService.getAllQuestion(lesson, classroom));
     }
