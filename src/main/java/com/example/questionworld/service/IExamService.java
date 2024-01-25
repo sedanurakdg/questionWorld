@@ -1,14 +1,14 @@
-    package com.example.questionworld.service;
+package com.example.questionworld.service;
 
-    import com.example.questionworld.model.Exam;
-    import com.example.questionworld.model.Question;
+import com.example.questionworld.model.Exam;
+import com.example.questionworld.model.Question;
 
-    import java.util.List;
+import java.util.List;
 
-    public interface IExamService {
-        Exam createExam(Integer userId, List<Question> question);
+public interface IExamService {
+    Exam createExam(Integer userId, List<Question> question);
 
-        Exam getExam(Integer examId);
+    Exam getExam(Integer examId);
 
-        void deleteExam(Integer id);
-    }
+    void deleteExam(Integer id);
+}

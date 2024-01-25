@@ -1,18 +1,18 @@
-    package com.example.questionworld.service;
+package com.example.questionworld.service;
 
-    import com.example.questionworld.dto.OpUserP;
-    import com.example.questionworld.model.OpUser;
+import com.example.questionworld.dto.OpUserP;
+import com.example.questionworld.model.OpUser;
 
-    public interface IOperationalService {
-        OpUser createOpUser(OpUserP opUserP);
+public interface IOperationalService {
+    OpUser createOpUser(OpUserP opUserP);
 
-        OpUser getUserById(Integer id);
+    OpUser getUserById(Integer id);
 
-        OpUser editOpUser(Integer id,OpUserP opUser);
+    OpUser editOpUser(Integer id,OpUserP opUser);
 
-        void changePassword(Integer id, String password);
+    void changePassword(Integer id, String password);
 
-        void deleteUser(Integer id);
+    void deleteUser(Integer id);
 
-        OpUser login(OpUserP opUserP);
-    }
+    OpUser login(OpUserP opUserP);
+}
