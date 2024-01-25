@@ -1,7 +1,7 @@
-package com.example.questionworld.exception;
+    package com.example.questionworld.exception;
 
-public class ResourceNotFoundException extends RuntimeException {
-    public ResourceNotFoundException(String erMessage) {
-        super(erMessage);
+    public class ResourceNotFoundException extends RuntimeException {
+        public ResourceNotFoundException(String erMessage) {
+            super(erMessage);
+        }
     }
-}

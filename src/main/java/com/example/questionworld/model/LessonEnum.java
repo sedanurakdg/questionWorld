@@ -1,6 +1,6 @@
-package com.example.questionworld.model;
+    package com.example.questionworld.model;
 
-public enum LessonEnum {
-    TURKCE,
-    MATEMATİK
-}
+    public enum LessonEnum {
+        TURKCE,
+        MATEMATİK
+    }
